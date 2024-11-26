@@ -2,7 +2,7 @@
   <section class="bg-white">
     <!-- Hero Section -->
     <div
-      class="container mx-auto flex flex-col-reverse md:flex-row items-center py-12 px-6 m-5"
+      class="mx-auto flex flex-col-reverse md:flex-row items-center text-center justify-center"
       id="cover"
     >
       <!-- Hero Text -->
@@ -25,13 +25,13 @@
 
       <!-- Image Cards -->
       <div
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2"
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         <!-- Grid Item -->
         <div
           v-for="(item, index) in catalogItems"
           :key="index"
-          class="relative group overflow-hidden rounded-lg shadow-lg w-64 opacity-0 transform translate-y-10 scroll-fade"
+          class="relative group overflow-hidden max-sm:w-46 max-sm:gap-2 max-2xl:w-48 rounded-lg shadow-lg w-64 opacity-0 transform translate-y-10 scroll-fade"
         >
           <!-- Image -->
           <img
@@ -52,11 +52,11 @@
 
   <!-- Background Section -->
   <section
-    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade"
+    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade m-5"
     id="background"
   >
     <div
-      class="text-center p-6 rounded-lg max-w-lg text-white bg-black bg-opacity-45 opacity-0 transform translate-y-10 scroll-fade"
+      class="text-center p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
     >
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
         We have the most greatest collections

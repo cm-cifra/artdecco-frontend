@@ -21,7 +21,7 @@
               class="absolute top-2 right-2 p-2 w-10 h-10 rounded-full shadow-lg hover:bg-gray-100 cursor-pointer transition duration-300"
             >
               <i
-                class="fas fa-heart text-white border-black hover:text-red-600 mx-1 w-16 h-16"
+                class="fas fa-heart text-white hover:text-red-600 mx-1 w-16 h-16"
               ></i>
             </div>
           </div>
@@ -29,7 +29,7 @@
           <div class="p-6 text-center">
             <div class="flex align-middle text-center justify-between">
               <h3
-                class="text-sm text-orange-600 uppercase font-semibold tracking-wide"
+                class="text-sm text-yellow-600 uppercase font-semibold tracking-wide"
               >
                 Sensation
               </h3>
@@ -47,16 +47,16 @@
             <!-- Updated Button -->
             <div class="flex justify-between align-middle text-center my-4">
               <button
-                class="w-56 h-10 bg-yellow-600 text-white text-lg font-semibold rounded-md shadow-md hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-yellow-500 transition duration-300"
+                class="w-56 h-10 bg-white border-black border hover:bg-yellow-600 text-black text-lg font-semibold rounded-md shadow-md focus:outline-none focus:ring-4 focus:ring-yellow-600 transition duration-300"
               >
                 Buy Now
               </button>
 
               <button
-                class="p-2 rounded-full bg-gray-100 shadow-md hover:bg-orange-200 transition duration-300"
+                class="p-2 rounded-full bg-gray-100 shadow-md hover:bg-yellow-200 transition duration-300 border"
               >
                 <i
-                  class="fas fa-shopping-cart text-gray-600 hover:text-orange-600"
+                  class="fas fa-shopping-cart text-gray-600 hover:text-yellow-600"
                 ></i>
               </button>
             </div>
@@ -91,15 +91,7 @@ section {
   transition: transform 0.3s ease-in-out;
 }
 
-/* Ensure buttons have better hover interaction */
-button:hover {
-  background-color: #f97316; /* Orange color */
-}
-
 /* Specific adjustments to buttons for consistency */
-button.bg-yellow-600:hover {
-  background-color: #fbbf24;
-}
 
 /* Ensure images cover properly within the cards */
 img {

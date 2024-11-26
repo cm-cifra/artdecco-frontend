@@ -1,19 +1,18 @@
 <template>
   <Header />
-  <section class="">
-    <div
-      class="bg-gray-50 p-6 rounded shadow container justify-center align-middle"
-    >
-      <div class="flex flex-col lg:flex-row gap-6">
+  <section class="flex items-center justify-center">
+    <div class="pcontainer flex">
+      <div class="flex justify-between">
         <!-- Image Gallery -->
-        <div class="w-full lg:w-1/3">
+        <div class="w-full grid m-10 align-middle justify-center">
           <div class="mb-4">
             <img
               :src="selectedImage"
               alt="Product"
-              class="w-full h-64 object-cover rounded"
+              class="w-96 h-80 object-cover rounded"
             />
           </div>
+
           <div class="flex gap-2">
             <img
               v-for="image in product.images"
@@ -81,19 +80,21 @@
 
           <!-- Action Buttons -->
           <div class="mt-6 flex items-center gap-4">
-            <button class="bg-yellow-600 text-white px-6 py-2 rounded">
+            <button
+              class="bg-yellow-600 text-white px-6 py-2 rounded w-56 hover:bg-yellow-700"
+            >
               Buy
             </button>
-            <button class="border border-gray-300 px-6 py-2 rounded">
+
+            <button class="border-gray-300 rounded">
+              <i class="fas fa-shopping-cart"></i></button
+            ><button class="border-gray-300 rounded">
               <i class="fas fa-heart"></i>
-            </button>
-            <button class="border border-gray-300 px-6 py-2 rounded">
-              <i class="fas fa-shopping-cart"></i>
             </button>
           </div>
 
           <!-- Tabs -->
-          <div class="mt-8 border-t pt-4">
+          <div class="mt-8 border-t">
             <div class="flex gap-4">
               <button
                 v-for="tab in tabs"
@@ -147,9 +148,11 @@ export default {
         price: "1,345.00",
         freeInstallation: true,
         images: [
-          "path/to/image1.jpg",
-          "path/to/image2.jpg",
-          "path/to/image3.jpg",
+          "../assets/kits/el2.JPG",
+          "../assets/kits/el3.JPG",
+          "../assets/kits/el5.JPG",
+          "../assets/kits/el6.JPG",
+          "../assets/kits/el7.JPG",
         ],
         sizes: ["80 cm", "100 cm"],
         colors: [
@@ -157,23 +160,12 @@ export default {
           { name: "Beige", code: "#F5F5DC" },
         ],
       },
-      selectedImage: "path/to/image1.jpg",
+      selectedImage: "../assets/kits/elezabeth.JPG",
       selectedSize: "80 cm",
       selectedColor: "White",
-      tabs: [
-        "Kit Composition",
-        "Characteristics",
-        "Installation",
-        "Instructions",
-        "Description",
-      ],
+
       selectedTab: "Kit Composition",
     };
-  },
-  computed: {
-    selectedTabContent() {
-      return `Content for ${this.selectedTab}`;
-    },
   },
 };
 </script>
