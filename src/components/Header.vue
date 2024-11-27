@@ -1,6 +1,7 @@
 <template>
   <div>
-    <header class="bg-black text-white py-4">
+    <!-- Fixed Header -->
+    <header class="bg-black text-white py-4 fixed top-0 left-0 w-full z-50">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex space-x-4 items-center justify-center">
           <router-link
@@ -47,8 +48,8 @@
       </div>
     </header>
 
-    <!-- Header Section -->
-    <header class="text-black py-4 items-center justify-center bg-white">
+    <!-- Secondary Header Section -->
+    <header class="text-black bg-white mt-20 fixed -top-5 left-0 w-full z-40">
       <div class="container mx-auto flex justify-center items-center">
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-wide">
@@ -130,6 +131,11 @@
         </router-link>
       </div>
     </header>
+
+    <!-- Content Placeholder -->
+    <main class="pt-48">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -150,12 +156,18 @@ export default {
 </script>
 
 <style scoped>
-/* Ensure the header has consistent padding */
-header {
-  padding: 1rem 0;
+/* Fixed header padding adjustment */
+main {
+  padding-top: 4rem;
 }
 
-/* Make the mobile menu transition smoothly */
+@media (max-width: 768px) {
+  main {
+    padding-top: 6rem;
+  }
+}
+
+/* Ensure the mobile menu transitions smoothly */
 @media (max-width: 768px) {
   .mobile-menu {
     transition: height 0.3s ease-in-out;

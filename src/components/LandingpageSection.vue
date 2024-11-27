@@ -2,25 +2,28 @@
   <section class="bg-white">
     <!-- Hero Section -->
     <div
-      class="mx-auto flex flex-col-reverse md:flex-row items-center text-center justify-center"
+      class="mx-auto flex flex-col-reverse md:flex-row items-center text-center justify-center -m-5"
       id="cover"
     >
       <!-- Hero Text -->
       <div
         class="md:w-1/2 space-y-6 text-center md:text-left opacity-0 transform translate-y-10 scroll-fade"
       >
-        <h1 class="text-4xl md:text-4xl font-bold leading-tight">
-          Provides you with the best quality products
-        </h1>
-        <p class="text-gray-600 text-lg leading-relaxed">
-          With our products, your bathroom is ensured to have the best quality
-          that you can enjoy.
-        </p>
-        <button
-          class="px-8 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition duration-300 ease-in-out"
-        >
-          Explore
-        </button>
+        <Motion preset="slideVisibleLeft" :duration="1200">
+          <h1 class="text-4xl md:text-4xl font-bold leading-tight">
+            Provides you with the best quality products
+          </h1>
+
+          <p class="text-gray-600 text-lg leading-relaxed">
+            With our products, your bathroom is ensured to have the best quality
+            that you can enjoy.
+          </p>
+          <button
+            class="px-8 py-3 my-10 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition duration-300 ease-in-out"
+          >
+            Explore
+          </button>
+        </Motion>
       </div>
 
       <!-- Image Cards -->
@@ -31,7 +34,7 @@
         <div
           v-for="(item, index) in catalogItems"
           :key="index"
-          class="relative group overflow-hidden max-sm:w-46 max-sm:gap-2 max-2xl:w-48 rounded-lg shadow-lg w-64 opacity-0 transform translate-y-10 scroll-fade"
+          class="relative group overflow-hidden max-sm:w-46 max-sm:gap-2 max-2xl:w-48 rounded-md w-64 opacity-0 transform translate-y-10 scroll-fade shadow-xl hover:shadow-gray-500 transition-shadow duration-300 shadow-gray-400"
         >
           <!-- Image -->
           <img
@@ -52,25 +55,27 @@
 
   <!-- Background Section -->
   <section
-    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade m-5"
+    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade m-10"
     id="background"
   >
-    <div
-      class="text-center p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
-    >
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        We have the most greatest collections
-      </h1>
-      <p class="text-lg md:text-xl mb-6">
-        Have no trouble for choosing our products because we have collections
-        that will suit your standards
-      </p>
-      <button
-        class="px-14 py-3 bg-yellow-600 bg-opacity-75 text-white font-semibold rounded-xl hover:bg-slate-900 transition duration-300 ease-in-out"
+    <Motion preset="slideVisibleTop" :duration="1200">
+      <div
+        class="text-center p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
       >
-        Explore
-      </button>
-    </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          We have the most greatest collections
+        </h1>
+        <p class="text-lg md:text-xl mb-6">
+          Have no trouble for choosing our products because we have collections
+          that will suit your standards
+        </p>
+        <button
+          class="px-14 py-3 bg-yellow-600 bg-opacity-75 text-white font-semibold rounded-xl hover:bg-slate-900 transition duration-300 ease-in-out"
+        >
+          Explore
+        </button>
+      </div></Motion
+    >
   </section>
 
   <!-- Footer Section -->

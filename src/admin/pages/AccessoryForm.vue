@@ -271,10 +271,40 @@ can you update this that can store data to backend using sheet or csv
       </div>
     </form>
   </div>
+  <!-- Bulk Upload Section -->
+  <div
+    class="container mx-auto py-8 px-4 max-w-3xl bg-white shadow-md rounded my-5"
+  >
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+      Bulk Upload
+    </h1>
+    <form @submit.prevent="uploadFile">
+      <div class="space-y-4">
+        <input
+          type="file"
+          accept=".csv"
+          @change="handleFileUpload"
+          class="border border-gray-300 rounded px-4 py-2 w-full"
+        />
+        <button
+          type="submit"
+          class="bg-yellow-600 text-white px-4 py-2 w-full rounded hover:bg-yellow-700"
+        >
+          Upload and Save
+        </button>
+      </div>
+      <p v-if="uploadProgress" class="mt-4 text-blue-600">
+        {{ uploadProgress }}
+      </p>
+      <p v-if="uploadError" class="mt-4 text-red-600">
+        {{ uploadError }}
+      </p>
+    </form>
+  </div>
 </template>
-
 <script>
 import axios from "axios";
+import Papa from "papaparse";
 
 export default {
   props: ["id"],
@@ -297,18 +327,28 @@ export default {
         guarantee: "",
         photo: "",
       },
+      file: null,
+      uploadProgress: null,
+      uploadError: null,
     };
   },
   methods: {
+    // Fetch an existing accessory when editing
     async fetchAccessory() {
       if (this.id) {
         this.isEditing = true;
-        const response = await axios.get(
-          `http://localhost:3000/accessories/${this.id}`
-        );
-        this.accessory = response.data;
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/accessories/${this.id}`
+          );
+          this.accessory = response.data;
+        } catch (error) {
+          console.error("Error fetching accessory:", error);
+        }
       }
     },
+
+    // Save a new or existing accessory
     async saveAccessory() {
       try {
         if (this.isEditing) {
@@ -324,12 +364,67 @@ export default {
         console.error("Error saving accessory:", error);
       }
     },
+
+    // Handle file selection
+    handleFileUpload(event) {
+      this.file = event.target.files[0];
+    },
+
+    // Upload CSV file to the server
+    async uploadFile() {
+      if (!this.file) {
+        this.uploadError = "Please select a file to upload.";
+        return;
+      }
+
+      this.uploadProgress = "Parsing file...";
+      this.uploadError = null;
+
+      // Parse CSV file using PapaParse
+      Papa.parse(this.file, {
+        header: true,
+        skipEmptyLines: true, // Skip empty lines in the CSV
+        complete: async (results) => {
+          const data = results.data.filter((row) =>
+            Object.values(row).some((value) => value !== null && value !== "")
+          );
+
+          if (data.length === 0) {
+            this.uploadError = "The file contains no valid data.";
+            this.uploadProgress = null;
+            return;
+          }
+
+          try {
+            this.uploadProgress = "Uploading data to the server...";
+            await axios.post("http://localhost:3000/accessories/bulk", data);
+            this.uploadProgress = "Upload successful!";
+            this.file = null; // Reset file input
+          } catch (error) {
+            this.uploadError = "Error uploading data. Please try again.";
+            console.error("Upload error:", error);
+          } finally {
+            this.uploadProgress = null;
+          }
+        },
+        error: (error) => {
+          this.uploadError = "Error parsing the file. Please check the format.";
+          console.error("Parsing error:", error);
+        },
+      });
+    },
   },
   mounted() {
     this.fetchAccessory();
   },
 };
 </script>
+
+<style>
+.input-field {
+  @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+</style>
 
 <style>
 .input-field {

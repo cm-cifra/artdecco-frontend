@@ -3,7 +3,7 @@
     <!-- Header -->
     <Header />
 
-    <div class="h-[800px] bg-gray-100">
+    <div class="h-[800px] bg-gray-100 my-10">
       <div class="w-full">
         <!-- Hero Section -->
         <div class="overflow-hidden shadow-lg">
@@ -30,23 +30,25 @@
             />
 
             <!-- Text Content -->
-            <div
-              class="relative p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
-              :style="{ transform: `translateY(${parallaxY1}px)` }"
-            >
-              <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">
-                Discover Our Exclusive Collections
-              </h1>
-              <p class="text-lg md:text-xl mb-6 fade-in">
-                Choose from a range of carefully curated products that meet your
-                expectations and elevate your standards.
-              </p>
-              <button
-                class="px-12 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition-transform transform hover:scale-105 duration-300 ease-in-out fade-in"
+            <Motion preset="slideVisibleBottom" :duration="700">
+              <div
+                class="relative p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
+                :style="{ transform: `translateY(${parallaxY1}px)` }"
               >
-                Explore Now
-              </button>
-            </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">
+                  Discover Our Exclusive Collections
+                </h1>
+                <p class="text-lg md:text-xl mb-6 fade-in">
+                  Choose from a range of carefully curated products that meet
+                  your expectations and elevate your standards.
+                </p>
+                <button
+                  class="px-12 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition-transform transform hover:scale-105 duration-300 ease-in-out fade-in"
+                >
+                  Explore Now
+                </button>
+              </div>
+            </Motion>
           </section>
         </div>
 
