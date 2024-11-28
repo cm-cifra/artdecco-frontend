@@ -9,7 +9,6 @@ import "./assets/main.css"; // Global styles
 import VueCarousel from "vue-carousel";
 import { MotionPlugin } from "@vueuse/motion";
 import "@fortawesome/fontawesome-free/css/all.css";
-
 import AnimateOnScroll from "primevue/animateonscroll";
 
 const app = createApp(App);

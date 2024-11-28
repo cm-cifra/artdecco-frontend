@@ -1,9 +1,9 @@
 <template>
-  <div class="font-sans bg-gray-100 relative">
+  <div class="font-sans bg-black relative">
     <!-- Header -->
     <Header />
 
-    <div class="h-[800px] bg-gray-100 my-10">
+    <div class="h-[800px] bg-black my-10">
       <div class="w-full">
         <!-- Hero Section -->
         <div class="overflow-hidden shadow-lg">
@@ -32,7 +32,7 @@
             <!-- Text Content -->
             <Motion preset="slideVisibleBottom" :duration="700">
               <div
-                class="relative p-10 m-8 text-white justify-start bg-black bg-opacity-15 shadow-white rounded-lg backdrop-filter backdrop-blur-md border border-white/20"
+                class="relative p-10 m-8 text-white justify-start bg-black bg-opacity-5 shadow-white rounded-lg backdrop-filter backdrop-blur-md"
                 :style="{ transform: `translateY(${parallaxY1}px)` }"
               >
                 <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">
@@ -43,9 +43,9 @@
                   your expectations and elevate your standards.
                 </p>
                 <button
-                  class="px-12 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition-transform transform hover:scale-105 duration-300 ease-in-out fade-in"
+                  class="text-white font-semibold rounded-lg transition-transform transform hover:scale-105 duration-300 ease-in-out fade-in hover:text-yellow-600"
                 >
-                  Explore Now
+                  <u> Explore Now </u>
                 </button>
               </div>
             </Motion>
@@ -54,7 +54,7 @@
 
         <!-- Additional Components -->
         <div class="bg-white py-10">
-          <Section />
+          <Card /> <Section />
           <ProductCard />
         </div>
       </div>
@@ -81,6 +81,7 @@ import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import Section from "../components/LandingpageSection.vue";
 import Category from "@/components/category.vue";
+import Card from "@/components/card.vue";
 export default {
   components: {
     ProductCard,
@@ -88,6 +89,7 @@ export default {
     Section,
     Footer,
     Category,
+    Card,
   },
   data() {
     return {
@@ -140,7 +142,7 @@ export default {
 
 <style scoped>
 #firstsec {
-  background-image: url("../assets/2.jpg");
+  background-image: url("../assets/set.jpg");
 }
 /* Fade-in Animation */
 @keyframes fade-in {

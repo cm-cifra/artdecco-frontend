@@ -35,7 +35,7 @@ export default {
     return {
       catalogItems: [
         {
-          image: "../assets/bathroom/cover.JPG",
+          image: "../assets/kits/elezabeth.JPG",
           title: "Bathroom Sets",
         },
         {
@@ -43,32 +43,32 @@ export default {
           title: "Faucets",
         },
         {
-          image: "../assets/image3.jpg",
-          title: "kits",
+          image: "../assets/kits/do1.JPG",
+          title: "Kits",
         },
         {
-          image: "../assets/Mirrors/cover.JPG",
-          title: "mirrors and mirror cabinets",
+          image: "../assets/Mirrors/me1.JPG",
+          title: "Mirrors and Cabinets",
         },
         {
-          image: "../assets/image5.jpg",
-          title: "kitchen sink",
+          image: "../assets/sink/f1.JPG",
+          title: "Kitchen Sink",
         },
         {
           image: "../assets/image6.jpg",
           title: "Bathtubs",
         },
         {
-          image: "../assets/image7.jpg",
+          image: "../assets/faucets/vo3.JPG",
           title: "Faucets and Shower",
         },
         {
-          image: "../assets/accessories/cover1.JPG",
+          image: "../assets/accessories/l1.JPG",
           title: "Accessories",
         },
         {
-          image: "../assets/sink/cover.JPG",
-          title: "sink",
+          image: "../assets/sink/f1.JPG",
+          title: "Sink",
         },
       ],
     };

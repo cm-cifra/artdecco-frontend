@@ -1,32 +1,48 @@
 <template>
   <Header />
-  <section class="flex items-center justify-center">
-    <div class="pcontainer flex">
-      <div class="flex justify-between">
+  <section class="flex items-center justify-center my-12 p-10">
+    <div class="w-full container">
+      <div class="flex align-middle justify-center">
         <!-- Image Gallery -->
-        <div class="w-full grid m-10 align-middle justify-center">
-          <div class="mb-4">
-            <img
-              :src="selectedImage"
-              alt="Product"
-              class="w-96 h-80 object-cover rounded"
-            />
-          </div>
+        <div class="w-full container">
+          <div class=" ">
+            <!-- Image Gallery -->
+            <div class="w-full grid m-10 align-middle justify-center">
+              <div class="mb-4 flex items-center justify-center">
+                <!-- Selected Image with Fixed Dimensions -->
+                <div
+                  class="w-[600px] h-[600px] overflow-hidden rounded bg-gray-200 border shadow-sm shadow-black"
+                >
+                  <img
+                    :src="selectedImage"
+                    alt="Product"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
 
-          <div class="flex gap-2">
-            <img
-              v-for="image in product.images"
-              :key="image"
-              :src="image"
-              alt="Thumbnail"
-              class="w-16 h-16 object-cover rounded cursor-pointer border-2"
-              :class="
-                selectedImage === image
-                  ? 'border-yellow-600'
-                  : 'border-gray-300'
-              "
-              @click="selectedImage = image"
-            />
+              <!-- Thumbnails -->
+              <div class="flex gap-2 justify-center">
+                <img
+                  v-for="image in product.images"
+                  :key="image"
+                  :src="image"
+                  alt="Thumbnail"
+                  class="w-16 h-16 object-cover rounded cursor-pointer border-2"
+                  :class="
+                    selectedImage === image
+                      ? 'border-yellow-600'
+                      : 'border-gray-300'
+                  "
+                  @click="selectedImage = image"
+                />
+              </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="w-full lg:w-2/3">
+              <!-- (Product Details code remains unchanged) -->
+            </div>
           </div>
         </div>
 
@@ -153,6 +169,7 @@ export default {
           "../assets/kits/el5.JPG",
           "../assets/kits/el6.JPG",
           "../assets/kits/el7.JPG",
+          "../assets/kits/elezabeth.JPG",
         ],
         sizes: ["80 cm", "100 cm"],
         colors: [
@@ -169,3 +186,32 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Selected Image Container */
+.w-96 {
+  width: 24rem; /* 384px */
+}
+
+.h-96 {
+  height: 24rem; /* 384px */
+}
+
+.object-cover {
+  object-fit: cover; /* Ensures image fits within container without distortion */
+}
+
+/* Placeholder background for non-loaded images */
+.bg-gray-200 {
+  background-color: #e5e7eb; /* Tailwind's gray-200 for fallback */
+}
+
+/* Thumbnail Styling */
+.w-16 {
+  width: 4rem; /* 64px */
+}
+
+.h-16 {
+  height: 4rem; /* 64px */
+}
+</style>

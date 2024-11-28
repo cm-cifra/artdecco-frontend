@@ -49,86 +49,47 @@
     </header>
 
     <!-- Secondary Header Section -->
-    <header class="text-black bg-white mt-20 fixed -top-5 left-0 w-full z-40">
+    <header
+      class="text-black bg-white mt-16 fixed left-0 w-full z-40 shadow p-7"
+    >
       <div class="container mx-auto flex justify-center items-center">
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-wide">
-          <router-link
-            to="/installation"
-            class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12"
-            active-class="bg-yellow-600 text-white"
-            exact-active-class="bg-yellow-600 text-white"
-          >
-            Corporate Installation
-          </router-link>
-          <router-link
-            to="/collection"
-            class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12"
-            active-class="bg-yellow-600 text-white"
-            exact-active-class="bg-yellow-600 text-white"
-          >
-            Collection
-          </router-link>
-          <router-link
-            to="/catalog"
-            class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12"
-            active-class="bg-yellow-600 text-white"
-            exact-active-class="bg-yellow-600 text-white"
-          >
-            Catalogs
-          </router-link>
-          <router-link
-            to="/stock"
-            class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12"
-            active-class="bg-yellow-600 text-white"
-            exact-active-class="bg-yellow-600 text-white"
-          >
-            Stocks
-          </router-link>
-          <router-link
-            to="/about"
-            class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12"
-            active-class="bg-yellow-600 text-white"
-            exact-active-class="bg-yellow-600 text-white"
-          >
-            About Us
-          </router-link>
+          <div v-for="(link, index) in links" :key="index" class="relative">
+            <router-link
+              :to="link.to"
+              class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12 hover:bg-yellow-600 hover:text-white"
+              active-class="bg-yellow-600 text-white"
+              exact-active-class="bg-yellow-600 text-white"
+              @mouseover="showForm = index"
+              @mouseleave="showForm = null"
+            >
+              {{ link.label }}
+            </router-link>
+
+            <!-- Form Card -->
+            <div
+              v-if="showForm === index"
+              class="absolute top-full left-0 mt-2 w-64 p-4 bg-white shadow-lg rounded-md border border-gray-300 z-10"
+            ></div>
+          </div>
         </nav>
       </div>
 
       <!-- Mobile Menu -->
       <div
         v-if="mobileMenuOpen"
-        class="bg-black md:hidden flex flex-col items-center space-y-4 py-4"
+        class="bg-black md:hidden flex flex-col items-center space-y-4 py-4 m-16"
       >
-        <router-link
-          to="/collection"
-          class="text-white hover:text-gray-300 transition duration-300"
-          active-class="text-yellow-600"
-        >
-          Collection
-        </router-link>
-        <router-link
-          to="/carousel"
-          class="text-white hover:text-gray-300 transition duration-300"
-          active-class="text-yellow-600"
-        >
-          Carousel
-        </router-link>
-        <router-link
-          to="/about"
-          class="text-white hover:text-gray-300 transition duration-300"
-          active-class="text-yellow-600"
-        >
-          About Us
-        </router-link>
-        <router-link
-          to="/stock"
-          class="text-white hover:text-gray-300 transition duration-300"
-          active-class="text-yellow-600"
-        >
-          Stocks
-        </router-link>
+        <div v-for="(link, index) in links" :key="index">
+          <router-link
+            :to="link.to"
+            class="text-white hover:text-gray-300 transition duration-300"
+            active-class="text-yellow-600  "
+          >
+            {{ link.label }}
+          </router-link>
+        </div>
       </div>
     </header>
 
@@ -145,6 +106,14 @@ export default {
   data() {
     return {
       mobileMenuOpen: false,
+      showForm: null, // Tracks the index of the link that is hovered over
+      links: [
+        { to: "/installation", label: "Corporate Installation" },
+        { to: "/collection", label: "Collection" },
+        { to: "/catalog", label: "Catalogs" },
+        { to: "/stock", label: "Stocks" },
+        { to: "/about", label: "About Us" },
+      ],
     };
   },
   methods: {
@@ -167,10 +136,9 @@ main {
   }
 }
 
-/* Ensure the mobile menu transitions smoothly */
-@media (max-width: 768px) {
-  .mobile-menu {
-    transition: height 0.3s ease-in-out;
-  }
+/* Ensure the form card is hidden initially and smoothly appears */
+.form-card {
+  display: none;
+  transition: opacity 0.3s ease-in-out;
 }
 </style>

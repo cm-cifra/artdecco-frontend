@@ -10,19 +10,27 @@ can you update this that can store data to backend using sheet or csv
           <!-- 1st cols-->
           <div>
             <!-- Photo -->
+
             <div>
               <label
                 for="photo"
                 class="block text-sm font-semibold text-gray-700 mb-1"
               >
-                Photo (URL)
+                Photo (URL or Upload)
               </label>
               <input
                 v-model="accessory.photo"
                 id="photo"
                 type="text"
-                placeholder="Enter photo URL"
+                placeholder="Enter photo URL or upload image"
                 class="input-field"
+              />
+              <!-- Image Upload -->
+              <input
+                type="file"
+                accept="image/*"
+                @change="handleImageUpload"
+                class="mt-2"
               />
             </div>
             <!-- Item -->
@@ -301,7 +309,66 @@ can you update this that can store data to backend using sheet or csv
       </p>
     </form>
   </div>
+
+  <div class="container mx-auto py-8 px-4 max-w-3xl bg-white shadow-md rounded">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+      {{ isEditing ? "Edit Accessory" : "Add Accessory" }}
+    </h1>
+    <form @submit.prevent="saveAccessory" class="space-y-6">
+      <div class="col-span-2 flex justify-between gap-2">
+        <div>
+          <!-- 1st cols-->
+          <div>
+            <!-- Photo -->
+            <div>
+              <label
+                for="photo"
+                class="block text-sm font-semibold text-gray-700 mb-1"
+              >
+                Photo (URL or Upload)
+              </label>
+              <input
+                v-model="accessory.photo"
+                id="photo"
+                type="text"
+                placeholder="Enter photo URL or upload image"
+                class="input-field"
+              />
+              <!-- Image Upload -->
+              <input
+                type="file"
+                accept="image/*"
+                @change="handleImageUpload"
+                class="mt-2"
+              />
+            </div>
+            <!-- Other fields (Item, Name, etc.) -->
+            <!-- Similar fields as before, such as item, name, collection, etc. -->
+          </div>
+        </div>
+      </div>
+      <div class="space-x-4 align-middle justify-center flex my-5">
+        <button
+          type="button"
+          v-if="isEditing"
+          @click="$emit('cancel')"
+          class="bg-gray-200 text-gray-700 px-4 py-2 w-56 rounded hover:bg-gray-300 transition"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-yellow-600 text-white px-4 py-2 w-56 rounded hover:bg-yellow-700"
+        >
+          {{ isEditing ? "Update" : "Save" }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bulk Upload Section -->
 </template>
+
 <script>
 import axios from "axios";
 import Papa from "papaparse";
@@ -348,6 +415,28 @@ export default {
       }
     },
 
+    // Handle image upload (store image in backend and retrieve filename)
+    async handleImageUpload(event) {
+      const formData = new FormData();
+      formData.append("file", event.target.files[0]);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/accessories/upload-photo",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        // Set the photo field to the filename or path returned by the server
+        this.accessory.photo = response.data.filePath;
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    },
+
     // Save a new or existing accessory
     async saveAccessory() {
       try {
@@ -365,7 +454,7 @@ export default {
       }
     },
 
-    // Handle file selection
+    // Handle file selection for bulk upload
     handleFileUpload(event) {
       this.file = event.target.files[0];
     },
@@ -383,7 +472,7 @@ export default {
       // Parse CSV file using PapaParse
       Papa.parse(this.file, {
         header: true,
-        skipEmptyLines: true, // Skip empty lines in the CSV
+        skipEmptyLines: true,
         complete: async (results) => {
           const data = results.data.filter((row) =>
             Object.values(row).some((value) => value !== null && value !== "")

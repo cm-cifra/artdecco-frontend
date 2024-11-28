@@ -10,8 +10,10 @@ import Installation from "../pages/Installation.vue";
 
 //admin import
 import Dashboard from "../admin/pages/dashboard.vue";
-import View from "../admin/pages/AccessoriesList.vue";
-import Add from "../admin/pages/AccessoryForm.vue";
+import accessoriesView from "../admin/pages/AccessoriesList.vue";
+import accessoriesAdd from "../admin/pages/AccessoryForm.vue";
+import kitsAdd from "../admin/pages/kitsForm.vue";
+import kitsView from "../admin/pages/kitsList.vue";
 // Define routes
 const routes = [
   {
@@ -58,14 +60,25 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/view",
-    name: "View",
-    component: View,
+    path: "/accessoriesView",
+    name: "accessoriesView",
+    component: accessoriesView,
   },
   {
-    path: "/add",
-    name: "Add",
-    component: Add,
+    path: "/accessoriesAdd",
+    name: "accessoriesAdd",
+    component: accessoriesAdd,
+  },
+
+  {
+    path: "/kitsView",
+    name: "kitsView",
+    component: kitsView,
+  },
+  {
+    path: "/kitsAdd",
+    name: "kitsAdd",
+    component: kitsAdd,
   },
 ];
 
