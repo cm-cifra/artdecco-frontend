@@ -7,6 +7,7 @@ import Catalog from "../pages/catalog.vue";
 import Stocks from "../pages/stocks.vue";
 import Product from "../pages/selectedProduct.vue";
 import Installation from "../pages/Installation.vue";
+import Accessories from "../pages/selectedProductAccessories.vue";
 
 //admin import
 import Dashboard from "../admin/pages/dashboard.vue";
@@ -14,6 +15,9 @@ import accessoriesView from "../admin/pages/AccessoriesList.vue";
 import accessoriesAdd from "../admin/pages/AccessoryForm.vue";
 import kitsAdd from "../admin/pages/kitsForm.vue";
 import kitsView from "../admin/pages/kitsList.vue";
+import bulk from "../admin/pages/MirrorsBulk.vue";
+
+import parallex from "../pages/productpage.vue";
 // Define routes
 const routes = [
   {
@@ -51,7 +55,11 @@ const routes = [
     name: "About",
     component: About,
   },
-
+  {
+    path: "/accessories",
+    name: "Accessories",
+    component: Accessories,
+  },
   //admin routes
 
   {
@@ -79,6 +87,16 @@ const routes = [
     path: "/kitsAdd",
     name: "kitsAdd",
     component: kitsAdd,
+  },
+  {
+    path: "/bulk",
+    name: "bulk",
+    component: bulk,
+  },
+  {
+    path: "/parallex",
+    name: "parallex",
+    component: parallex,
   },
 ];
 

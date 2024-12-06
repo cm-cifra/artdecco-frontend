@@ -58,7 +58,7 @@
           <div v-for="(link, index) in links" :key="index" class="relative">
             <router-link
               :to="link.to"
-              class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12 hover:bg-yellow-600 hover:text-white"
+              class="p-3 border-gray-500 border-opacity-40 border-2 m-5 rounded-3xl transition duration-300 ease-in-out px-12 hover:bg-yellow-300 hover:text-white hover:border-white"
               active-class="bg-yellow-600 text-white"
               exact-active-class="bg-yellow-600 text-white"
               @mouseover="showForm = index"

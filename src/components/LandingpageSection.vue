@@ -1,23 +1,25 @@
 <template>
-  <section class="bg-gray-100">
+  <section class="bg-orange-50">
     <div
       class="mx-auto grid md:flex-row items-center text-center justify-center p-10"
       id="cover"
     >
       <Motion preset="slideVisibleTop" :duration="1200">
-        <h1
-          class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-tex text-BLACK"
-        >
-          Our Collection
-        </h1>
-        <p>BROWSE THE LATEST ARTDECCO PRODUCT COLLECTIONS</p></Motion
+        <div class="p-5">
+          <h1
+            class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-tex text-BLACK"
+          >
+            Our Collection
+          </h1>
+          <p>BROWSE THE LATEST ARTDECCO PRODUCT COLLECTIONS</p>
+        </div></Motion
       >
       <MotionGroup preset="slideVisibleLeft" :duration="3000">
-        <div class="flex gap-4 flex-wrap justify-center">
+        <div class="flex gap-2 flex-wrap justify-center">
           <div
             v-for="(item, index) in catalogItems"
             :key="index"
-            class="relative group overflow-hidden max-sm:w-46 max-sm:gap-2 max-2xl:w-48 rounded-md w-64 transform translate-y-10 opacity-0 scroll-fade shadow-md hover:shadow-gray-500 transition-shadow duration-300 shadow-gray-400 border border-gray-600"
+            class="relative group overflow-hidden max-sm:w-46 max-sm:gap-2 max-2xl:w-48 rounded-sm w-[400px] transform translate-y-10 opacity-0 scroll-fade shadow-md hover:shadow-gray-500 transition-shadow duration-300 shadow-gray-400 border border-gray-600"
           >
             <div
               class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-0 group-hover:opacity-60 transition-opacity duration-300"
@@ -44,7 +46,7 @@
 
   <!-- Background Section -->
   <section
-    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade m-10"
+    class="relative bg-full w-full bg-center bg-no-repeat h-[70vh] flex items-center justify-center bg-opacity-60 scroll-fade"
     id="background"
   >
     <Motion preset="slideVisibleTop" :duration="600">
@@ -67,18 +69,6 @@
         </button>
       </div>
     </Motion>
-  </section>
-
-  <!-- Footer Section -->
-  <section class="h-[10vh] flex items-center justify-center m-20 scroll-fade">
-    <div
-      class="text-center p-6 rounded-lg max-w-lg text-yellow-600 opacity-0 transform translate-y-10"
-    >
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">SENSATION</h1>
-      <p class="text-lg md:text-xl mb-6 text-black">
-        Masterpieces that delight
-      </p>
-    </div>
   </section>
 </template>
 

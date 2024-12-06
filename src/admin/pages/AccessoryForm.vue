@@ -280,35 +280,6 @@ can you update this that can store data to backend using sheet or csv
     </form>
   </div>
   <!-- Bulk Upload Section -->
-  <div
-    class="container mx-auto py-8 px-4 max-w-3xl bg-white shadow-md rounded my-5"
-  >
-    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-      Bulk Upload
-    </h1>
-    <form @submit.prevent="uploadFile">
-      <div class="space-y-4">
-        <input
-          type="file"
-          accept=".csv"
-          @change="handleFileUpload"
-          class="border border-gray-300 rounded px-4 py-2 w-full"
-        />
-        <button
-          type="submit"
-          class="bg-yellow-600 text-white px-4 py-2 w-full rounded hover:bg-yellow-700"
-        >
-          Upload and Save
-        </button>
-      </div>
-      <p v-if="uploadProgress" class="mt-4 text-blue-600">
-        {{ uploadProgress }}
-      </p>
-      <p v-if="uploadError" class="mt-4 text-red-600">
-        {{ uploadError }}
-      </p>
-    </form>
-  </div>
 
   <div class="container mx-auto py-8 px-4 max-w-3xl bg-white shadow-md rounded">
     <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">

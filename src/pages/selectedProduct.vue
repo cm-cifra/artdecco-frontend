@@ -1,17 +1,19 @@
 <template>
   <Header />
   <section class="flex items-center justify-center my-12 p-10">
-    <div class="w-full container">
+    <div class="w-full container shadow-gray-400 shadow-md p-10">
       <div class="flex align-middle justify-center">
         <!-- Image Gallery -->
         <div class="w-full container">
           <div class=" ">
             <!-- Image Gallery -->
-            <div class="w-full grid m-10 align-middle justify-center">
-              <div class="mb-4 flex items-center justify-center">
+            <div class="w-full align-middle justify-center">
+              <div
+                class="mb-4 flex items-center justify-center w-[800px] h-[600px]"
+              >
                 <!-- Selected Image with Fixed Dimensions -->
                 <div
-                  class="w-[600px] h-[600px] overflow-hidden rounded bg-gray-200 border shadow-sm shadow-black"
+                  class="w-[800px] h-[600px] overflow-hidden rounded bg-gray-200 border shadow-sm shadow-black"
                 >
                   <img
                     :src="selectedImage"
@@ -22,37 +24,49 @@
               </div>
 
               <!-- Thumbnails -->
-              <div class="flex gap-2 justify-center">
-                <img
-                  v-for="image in product.images"
-                  :key="image"
-                  :src="image"
-                  alt="Thumbnail"
-                  class="w-16 h-16 object-cover rounded cursor-pointer border-2"
-                  :class="
-                    selectedImage === image
-                      ? 'border-yellow-600'
-                      : 'border-gray-300'
-                  "
-                  @click="selectedImage = image"
-                />
+              <div class="-ml-12">
+                <swiper
+                  :slidesPerView="5"
+                  :spaceBetween="1"
+                  :pagination="{ clickable: true }"
+                  :modules="modules"
+                  class="mySwiper w-[800px] flex"
+                >
+                  <swiper-slide v-for="image in product.images" :key="image">
+                    <img
+                      :src="image"
+                      alt="Thumbnail"
+                      class="w-36 h-36 object-cover rounded cursor-pointer border-2"
+                      :class="
+                        selectedImage === image
+                          ? 'border-yellow-600'
+                          : 'border-gray-300'
+                      "
+                      @click="selectedImage = image"
+                    />
+                  </swiper-slide>
+                </swiper>
               </div>
-            </div>
-
-            <!-- Product Details -->
-            <div class="w-full lg:w-2/3">
-              <!-- (Product Details code remains unchanged) -->
             </div>
           </div>
         </div>
 
         <!-- Product Details -->
-        <div class="w-full lg:w-2/3">
-          <h1 class="text-2xl font-bold text-gray-800">{{ product.name }}</h1>
-          <p class="text-sm text-gray-500">{{ product.brand }}</p>
+        <div class="w-full lg:w-2/3 border-2 p-5">
+          <div class="justify-between flex">
+            <h1 class="text-2xl font-bold text-gray-800">
+              {{ product.name }}
+            </h1>
+            <button class="border-gray-300 rounded">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+
+          <p class="text-sm text-gray-500">{{ product.article_num }}</p>
           <p class="text-sm text-gray-600 mt-2">
-            Product Code: {{ product.code }}
+            collection: {{ product.collection }}
           </p>
+
           <div class="mt-4">
             <span class="text-xl font-bold text-gray-900"
               >${{ product.price }}</span
@@ -95,17 +109,11 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="mt-6 flex items-center gap-4">
+          <div class="mt-6 flex items-center gap-4 justify-center">
             <button
-              class="bg-yellow-600 text-white px-6 py-2 rounded w-56 hover:bg-yellow-700"
+              class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700 w-full h-14"
             >
-              Buy
-            </button>
-
-            <button class="border-gray-300 rounded">
-              <i class="fas fa-shopping-cart"></i></button
-            ><button class="border-gray-300 rounded">
-              <i class="fas fa-heart"></i>
+              Add to Cart
             </button>
           </div>
 
@@ -130,9 +138,147 @@
               <p>{{ selectedTabContent }}</p>
             </div>
           </div>
+          <div class="p-2">
+            <h1 class="p-5 justify-center text-center">Configuration</h1>
+            <div class="border-b-2 border-gray rounded-md">
+              <button
+                @click="toggleCollapse"
+                class="text-black font-semibold py-2 px-4 rounded-sm transition w-[500px] text-left"
+              >
+                Pedestal
+              </button>
+              <div
+                v-if="!isCollapsed"
+                class="p-4 border-t border-gray-300 bg-gray-50 flex"
+              >
+                <img
+                  src="../assets/2.jpg"
+                  alt="Pedestal Product Detail"
+                  class="w-52 h-auto rounded-md mb-4"
+                />
+                <div class="p-5">
+                  <p class="text-gray-700">Article Number: 12345</p>
+                  <p class="text-gray-500 mt-2">Dimensions: 15x15x40 cm</p>
+                  <p class="text-gray-500 mt-1">Material: High-grade steel</p>
+                </div>
+              </div>
+            </div>
+            <div class="border-b-2 border-gray rounded-md">
+              <button
+                @click="toggleCollapse2"
+                class="text-black font-semibold py-2 px-4 rounded-sm transition w-[500px] text-left"
+              >
+                Sink
+              </button>
+              <div
+                v-if="!isCollapsed2"
+                class="p-4 border-t border-gray bg-gray-50 flex"
+              >
+                <img
+                  src="../assets/2.jpg"
+                  alt="Pedestal Product Detail"
+                  class="w-52 h-auto rounded-md mb-4"
+                />
+                <div class="p-5">
+                  <p class="text-gray-700">Article Number: 12345</p>
+                  <p class="text-gray-500 mt-2">Dimensions: 15x15x40 cm</p>
+                  <p class="text-gray-500 mt-1">Material: High-grade steel</p>
+                </div>
+              </div>
+            </div>
+            <div class="border-b-2 border-gray rounded-md">
+              <button
+                @click="toggleCollapse3"
+                class="text-black font-semibold py-2 px-4 rounded-sm transition w-[500px] text-left"
+              >
+                Mirror
+              </button>
+              <div
+                v-if="!isCollapsed3"
+                class="p-4 border-t border-gray-300 bg-gray-50 flex"
+              >
+                <img
+                  src="../assets/2.jpg"
+                  alt="Pedestal Product Detail"
+                  class="w-52 h-auto rounded-md mb-4"
+                />
+                <div class="p-5">
+                  <p class="text-gray-700">Article Number: 12345</p>
+                  <p class="text-gray-500 mt-2">Dimensions: 15x15x40 cm</p>
+                  <p class="text-gray-500 mt-1">Material: High-grade steel</p>
+                </div>
+              </div>
+            </div>
+            <div class="border-b-2 border-gray rounded-md">
+              <button
+                @click="toggleCollapse4"
+                class="text-black font-semibold py-2 px-4 transition w-[500px] text-left"
+              >
+                Mixer
+              </button>
+              <div
+                v-if="!isCollapsed4"
+                class="p-4 border-t border-gray-300 bg-gray-50 flex"
+              >
+                <img
+                  src="../assets/2.jpg"
+                  alt="Pedestal Product Detail"
+                  class="w-52 h-auto rounded-md mb-4"
+                />
+                <div class="p-5">
+                  <p class="text-gray-700">Article Number: 12345</p>
+                  <p class="text-gray-500 mt-2">Dimensions: 15x15x40 cm</p>
+                  <p class="text-gray-500 mt-1">Material: High-grade steel</p>
+                  <button @click="toggleDrawer" class=" ">Open Drawer</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <transition name="slide">
+      <div v-if="showDrawer" class="h-[1000px] w-{500px} p-4 transition">
+        <div class="flex justify-between">
+          <h2 class="text-lg font-semibold mb-4">Product Configuration</h2>
+          <button @click="toggleDrawer" class=" ">x</button>
+        </div>
+
+        <div class="grid gap-4">
+          <div>
+            <swiper
+              :slidesPerView="4"
+              :spaceBetween="1"
+              direction="vertical"
+              :pagination="{
+                clickable: true,
+              }"
+              :modules="modules"
+              class="mySwiper w-[300px] h-[900px] flex"
+            >
+              <swiper-slide
+                v-for="image in product.images"
+                :key="image"
+                direction="vertical"
+                class="mySwiper"
+              >
+                <img
+                  :src="image"
+                  alt="Thumbnail"
+                  class="w-56 h-56 object-cover rounded cursor-pointer border-2"
+                  :class="
+                    selectedImage === image
+                      ? 'border-yellow-600'
+                      : 'border-gray-300'
+                  "
+                  @click="selectedImage = image"
+                />
+              </swiper-slide>
+            </swiper>
+          </div>
+        </div>
+      </div>
+    </transition>
   </section>
   <ProductCard />
   <Footer />
@@ -144,7 +290,7 @@ import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import Section from "../components/LandingpageSection.vue";
 import Carousel from "../components/Carousel.vue";
-
+import { Pagination } from "swiper/modules";
 export default {
   components: {
     ProductCard,
@@ -157,8 +303,11 @@ export default {
   name: "Product.vue",
   data() {
     return {
+      modules: [Pagination],
       product: {
-        name: "Acrylic bathtub with stainless faucet",
+        name: "Product Name",
+        article_num: "Article Number",
+        collection: "collection",
         brand: "LIKE",
         code: "2214",
         price: "1,345.00",
@@ -171,6 +320,18 @@ export default {
           "../assets/kits/el7.JPG",
           "../assets/kits/elezabeth.JPG",
         ],
+        configurationItems: [
+          {
+            name: "Pedestal",
+            image: "../assets/kits/pedestal.jpg",
+            details: "High-grade steel, 15x15x40 cm.",
+          },
+          {
+            name: "Sink",
+            image: "../assets/kits/sink.jpg",
+            details: "Porcelain, 60x40x20 cm.",
+          },
+        ],
         sizes: ["80 cm", "100 cm"],
         colors: [
           { name: "White", code: "#FFFFFF" },
@@ -182,36 +343,32 @@ export default {
       selectedColor: "White",
 
       selectedTab: "Kit Composition",
+      isCollapsed: true,
+      isCollapsed2: true,
+      isCollapsed3: true,
+      isCollapsed4: true,
+      showDrawer: false,
     };
+  },
+  methods: {
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
+    toggleCollapse2() {
+      this.isCollapsed2 = !this.isCollapsed2;
+    },
+    toggleCollapse3() {
+      this.isCollapsed3 = !this.isCollapsed3;
+    },
+    toggleCollapse4() {
+      this.isCollapsed4 = !this.isCollapsed4;
+    },
+    // drawer
+    toggleDrawer() {
+      this.showDrawer = !this.showDrawer;
+    },
   },
 };
 </script>
 
-<style>
-/* Selected Image Container */
-.w-96 {
-  width: 24rem; /* 384px */
-}
-
-.h-96 {
-  height: 24rem; /* 384px */
-}
-
-.object-cover {
-  object-fit: cover; /* Ensures image fits within container without distortion */
-}
-
-/* Placeholder background for non-loaded images */
-.bg-gray-200 {
-  background-color: #e5e7eb; /* Tailwind's gray-200 for fallback */
-}
-
-/* Thumbnail Styling */
-.w-16 {
-  width: 4rem; /* 64px */
-}
-
-.h-16 {
-  height: 4rem; /* 64px */
-}
-</style>
+<style></style>
