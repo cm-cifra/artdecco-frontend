@@ -8,6 +8,8 @@ import Stocks from "../pages/stocks.vue";
 import Product from "../pages/selectedProduct.vue";
 import Installation from "../pages/Installation.vue";
 import Accessories from "../pages/selectedProductAccessories.vue";
+import Products from "../pages/MainProduct.vue";
+import Sample from "../Landingpage/sample1.vue";
 
 //admin import
 import Dashboard from "../admin/pages/dashboard.vue";
@@ -21,9 +23,19 @@ import parallex from "../pages/productpage.vue";
 // Define routes
 const routes = [
   {
+    path: "/sample",
+    name: "Sample",
+    component: Sample,
+  },
+  {
     path: "/collection",
     name: "Collection",
     component: Collection,
+  },
+  {
+    path: "/products",
+    name: "Products",
+    component: Products,
   },
   {
     path: "/installation",

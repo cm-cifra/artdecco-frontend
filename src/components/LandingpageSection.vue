@@ -62,11 +62,6 @@
           Choose from our curated selection of high-quality products that match
           your standards.
         </p>
-        <button
-          class="px-14 py-3 text-white font-semibold rounded-xl transition-transform duration-300 transform hover:scale-105"
-        >
-          <U>Explore Now</U>
-        </button>
       </div>
     </Motion>
   </section>

@@ -1,17 +1,4 @@
 <template>
-  <section>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 320"
-      class="absolute top-1/2 bg-white"
-    >
-      <path
-        fill="#ffffe6"
-        fill-opacity="1"
-        d="M0,256L60,261.3C120,267,240,277,360,266.7C480,256,600,224,720,218.7C840,213,960,235,1080,229.3C1200,224,1320,192,1380,176L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-      ></path>
-    </svg>
-  </section>
   <section
     class="text-center container mx-auto h-[500px] p-5 m-20 mb-20 -mt-10"
   >

@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Fixed Header -->
-    <header class="bg-black text-white py-4 fixed top-0 left-0 w-full z-50">
+    <header
+      class="bg-black text-white py-4 fixed top-0 left-0 w-full z-50 h-16"
+    >
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex space-x-4 items-center justify-center">
           <router-link
@@ -50,7 +52,7 @@
 
     <!-- Secondary Header Section -->
     <header
-      class="text-black bg-white mt-16 fixed left-0 w-full z-40 shadow p-7"
+      class="text-black bg-white mt-16 fixed left-0 w-full z-40 shadow p-7 h-20"
     >
       <div class="container mx-auto flex justify-center items-center">
         <!-- Desktop Navigation -->
